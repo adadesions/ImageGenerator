@@ -30,7 +30,7 @@ const ImageCanvas = (props) => {
   }, [draw]);
 
   return (
-    <canvas className="border-2 border-rose-100" ref={canvasRef} {...rest} />
+    <canvas ref={canvasRef} {...rest} />
   );
 };
 
