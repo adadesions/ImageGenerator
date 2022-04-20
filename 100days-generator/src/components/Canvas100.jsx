@@ -38,7 +38,7 @@ const Canvas100 = (props) => {
         ctx.fillText("#100daysOfCode", 400, 360);
       };
 
-      character0.src = character
+      character0.src = character      
     };
 
     const render = () => {
@@ -48,8 +48,14 @@ const Canvas100 = (props) => {
     render();
   }, [day, qoute, img]);
 
+  const saveImage = () => {
+    const canvas = canvasRef.current
+    const dataUrl = canvas.toDataURL('image/png', 1.0)
+    console.log(dataUrl);
+  }
+
   return (
-    <canvas ref={canvasRef} {...rest}></canvas>
+    <canvas id="myCanvas" ref={canvasRef} {...rest} onClick={saveImage}></canvas>
   );
 };
 

@@ -1,9 +1,15 @@
 import "./App.css";
+import Header from "./components/Header"
+import Footer from "./components/Footer"
 import GeneratePage from "./pages/GeneratePage"
 
 function App() {
   return (
-    <GeneratePage />
+    <div>
+      <Header />
+      <GeneratePage />
+      <Footer />
+    </div>
   );
 }
 

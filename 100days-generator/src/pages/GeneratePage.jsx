@@ -1,6 +1,6 @@
 import background from "../assets/img/100dayBG.png";
 import Canvas100 from "../components/Canvas100";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const GeneratePage = () => {
   let qoute =
@@ -12,6 +12,16 @@ const GeneratePage = () => {
   useEffect(() => {
     document.title = `(${noti}) Generator`;
   });
+  const downloadRef = useRef(null);
+
+  const saveImage = () => {
+    const download = downloadRef.current;
+    const canvas = document.getElementById("myCanvas");
+    const image = canvas
+      .toDataURL("image/png")
+      .replace("image/png", "image/octet-stream");
+    download.setAttribute("href", image);
+  };
 
   return (
     <div className="container mx-auto bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
@@ -26,16 +36,24 @@ const GeneratePage = () => {
           />
         </div>
         <div className="px-8 py-4">
-          <button
-            type="button"
-            className="text-white bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 w-full py-2"
-            onClick={() => {
-              setNoti(noti + 1);
-              setDays(days + 1);
-            }}
+          <a
+            href="#"
+            ref={downloadRef}
+            download="100days.png"
+            onClick={saveImage}
           >
-            Save me
-          </button>
+            <button
+              type="button"
+              className="text-white bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 w-full py-2"
+              onClick={() => {
+                setNoti(noti + 1);
+                setDays(days + 1);
+                console.log(document.getElementById("myCanvas"));
+              }}
+            >
+              Save me
+            </button>
+          </a>
         </div>
       </div>
     </div>
