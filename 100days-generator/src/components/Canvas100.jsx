@@ -3,9 +3,9 @@ import character from "../assets/img/character.png";
 
 const Canvas100 = (props) => {
   const { img, qoute, day, ...rest } = props;
-  const canvasRef = useRef(null);
-  const imgRef = useRef(null);
-  const charRef = useRef(null);
+  const canvasRef = useRef();
+  const imgRef = useRef();
+  const charRef = useRef();
 
   const draw = (ctx, qoute, day, image, character) => {
     let dayText = day + " /100 Days";
