@@ -1,5 +1,6 @@
 import background from "../assets/img/100dayBG.png";
 import Canvas100 from "../components/Canvas100";
+import GradientBtn from "../components/GradientBtn";
 import { useEffect, useState, useRef } from "react";
 
 const GeneratePage = () => {
@@ -7,11 +8,11 @@ const GeneratePage = () => {
     "The road to success and the road to failure are almost exactly the same.";
 
   const [days, setDays] = useState(3);
-  const [noti, setNoti] = useState(0);
-
+  
   useEffect(() => {
-    document.title = `(${noti}) Generator`;
+    document.title = `(${days} days) Generator`;
   });
+
   const downloadRef = useRef(null);
 
   const saveImage = () => {
@@ -36,23 +37,19 @@ const GeneratePage = () => {
           />
         </div>
         <div className="px-8 py-4">
+          <GradientBtn            
+            content="Next Day"
+            action={() => {
+              setDays(days + 1)
+            }}
+          />
           <a
-            href="#"
+            href="/"
             ref={downloadRef}
             download="100days.png"
             onClick={saveImage}
           >
-            <button
-              type="button"
-              className="text-white bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 w-full py-2"
-              onClick={() => {
-                setNoti(noti + 1);
-                setDays(days + 1);
-                console.log(document.getElementById("myCanvas"));
-              }}
-            >
-              Save me
-            </button>
+            <GradientBtn content="Save me" />
           </a>
         </div>
       </div>
