@@ -8,7 +8,7 @@ const GeneratePage = () => {
     "The road to success and the road to failure are almost exactly the same.";
 
   const [days, setDays] = useState(3);
-  
+
   useEffect(() => {
     document.title = `(${days} days) Generator`;
   });
@@ -37,10 +37,16 @@ const GeneratePage = () => {
           />
         </div>
         <div className="px-8 py-4">
-          <GradientBtn            
+          <GradientBtn
             content="Next Day"
             action={() => {
-              setDays(days + 1)
+              setDays(days + 1);
+            }}
+          />
+          <GradientBtn
+            content="Previous Day"
+            action={() => {
+              if (days > 0) setDays(days - 1);
             }}
           />
           <a
