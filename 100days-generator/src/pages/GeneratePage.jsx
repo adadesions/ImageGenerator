@@ -1,20 +1,26 @@
 import background from "../assets/img/100dayBG.png";
-import Canvas100  from "../components/Canvas100";
+import Canvas100 from "../components/Canvas100";
+import { useEffect, useState } from "react";
 
 const GeneratePage = () => {
   let qoute =
     "The road to success and the road to failure are almost exactly the same.";
-  let day = 3;
+
+  const [days, setDays] = useState(3);
+  const [noti, setNoti] = useState(0);
+
+  useEffect(() => {
+    document.title = `(${noti}) Generator`;
+  });
 
   return (
     <div className="container mx-auto bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
       <div className="grid grid-cols-2 gap-12">
-
         <div className="px-4 py-4">
           <Canvas100
             qoute={qoute}
             img={background}
-            day={day}
+            day={days}
             width={800}
             height={600}
           />
@@ -23,6 +29,10 @@ const GeneratePage = () => {
           <button
             type="button"
             className="text-white bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 w-full py-2"
+            onClick={() => {
+              setNoti(noti + 1);
+              setDays(days + 1);
+            }}
           >
             Save me
           </button>
@@ -32,4 +42,4 @@ const GeneratePage = () => {
   );
 };
 
-export default GeneratePage
+export default GeneratePage;
