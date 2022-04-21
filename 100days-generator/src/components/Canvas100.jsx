@@ -4,8 +4,6 @@ import character from "../assets/img/character.png";
 const Canvas100 = (props) => {
   const { img, qoute, day, ...rest } = props;
   const canvasRef = useRef(null);
-  const imgRef = useRef(null);
-  const charRef = useRef(null);
 
   useEffect(() => {
     let canvas = canvasRef.current;
@@ -15,7 +13,7 @@ const Canvas100 = (props) => {
 
     const draw = (ctx) => {
       let dayText = day + " /100 Days";
-      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);      
 
       image.onload = () => {
         ctx.drawImage(image, 0, 0);
@@ -24,10 +22,10 @@ const Canvas100 = (props) => {
       image.src = img;
 
       character0.onload = () => {
-        ctx.drawImage(character0, -220, 70, 800, 600);
+        ctx.drawImage(character0, -200, 80, 800, 600);
         ctx.fillStyle = "#FFFFFF";
-        ctx.font = "20px Verdana";
-        ctx.fillText(qoute, 30, 60);
+        ctx.font = "18px Verdana";
+        ctx.fillText(qoute, 40, 60);
 
         ctx.fillStyle = "#FFFFFF";
         ctx.font = "80px Brush Script MT";
@@ -59,6 +57,7 @@ const Canvas100 = (props) => {
       ref={canvasRef}
       {...rest}
       onClick={saveImage}
+      style={{objectFit:"contain"}}
     ></canvas>
   );
 };
