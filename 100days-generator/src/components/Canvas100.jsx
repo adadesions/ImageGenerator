@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 import character from "../assets/img/character.png";
 
 const Canvas100 = (props) => {
-  const { img, qoute, day, ...rest } = props;
+  const { img, quote, author, day, ...rest } = props;
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -13,6 +13,7 @@ const Canvas100 = (props) => {
 
     const draw = (ctx) => {
       let dayText = day + " /100 Days";
+      let offsetText = 0;
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);      
 
       image.onload = () => {
@@ -25,7 +26,17 @@ const Canvas100 = (props) => {
         ctx.drawImage(character0, -200, 80, 800, 600);
         ctx.fillStyle = "#FFFFFF";
         ctx.font = "18px Verdana";
-        ctx.fillText(qoute, 40, 60);
+        
+        let limit = 80
+        if (quote.length > limit) {
+          offsetText = 30
+          ctx.fillText(quote.slice(0, 80), 40, 60)
+          ctx.fillText(quote.slice(80, quote.length), 40, 60 + offsetText);
+        } else {
+          ctx.fillText(quote, 40, 60); 
+        }
+        
+        ctx.fillText(author, 40, 100 + offsetText);
 
         ctx.fillStyle = "#FFFFFF";
         ctx.font = "80px Brush Script MT";
@@ -43,7 +54,7 @@ const Canvas100 = (props) => {
     };
 
     render();
-  }, [day, qoute, img]);
+  }, [day, quote, img, author]);
 
   const saveImage = () => {
     const canvas = canvasRef.current;
