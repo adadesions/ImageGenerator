@@ -12,6 +12,11 @@ const randomImage = () => {
   return imgs[randIdx].replace('./', '')
 }
 
+const dayBetween = (from, to) => {
+  const daySec = 86400000
+  return Math.ceil(Math.abs((from - to)) / daySec)
+}
+
 const GeneratePage = () => {
   const randomIdx = Math.floor(Math.random() * quotes.quotes.length);
   let quote = quotes.quotes[randomIdx].quote;
@@ -20,7 +25,8 @@ const GeneratePage = () => {
   const randomImg = randomImage();
   const bg = require(`../assets/bg/${randomImg}`)
 
-  const [days, setDays] = useState(3);
+  const curDay = 100 - dayBetween(new Date(2022, 4, 18), new Date(2022, 7, 13))
+  const [days, setDays] = useState(curDay);
 
   useEffect(() => {
     document.title = `(${days} days) Generator`;
