@@ -1,4 +1,3 @@
-import background from "../assets/img/100dayBG.png";
 import Canvas100 from "../components/Canvas100";
 import GradientBtn from "../components/GradientBtn";
 import { useEffect, useState, useRef } from "react";
@@ -8,6 +7,9 @@ const GeneratePage = () => {
   const randomIdx = Math.floor(Math.random() * quotes.quotes.length);
   let quote = quotes.quotes[randomIdx].quote;
   let author = "- " + quotes.quotes[randomIdx].author;
+
+  const randomImg = Math.floor(Math.random() * 9);
+  let bgPath = require(`../assets/img/bg${randomImg}.jpeg`);
 
   const [days, setDays] = useState(3);
 
@@ -27,11 +29,11 @@ const GeneratePage = () => {
   };
 
   const dayHandle = (event) => {
-    if (event.key === 'Enter') {
-      let day = event.target.value 
-      day < 0 ? setDays(0) : setDays(day)
+    if (event.key === "Enter") {
+      let day = parseInt(event.target.value);
+      day < 0 ? setDays(0) : setDays(day);
     }
-  }
+  };
 
   return (
     <div className="container mx-auto bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
@@ -39,7 +41,7 @@ const GeneratePage = () => {
         <Canvas100
           quote={quote}
           author={author}
-          img={background}
+          img={bgPath}
           day={days}
           width={800}
           height={600}
@@ -49,7 +51,11 @@ const GeneratePage = () => {
             className="mr-6 text-center"
             type="text"
             placeholder="Enter a specific day"
-            style={{height:"2.5em", backgroundColor:"rgba(0,0,0,0.5)", color:"white"}}
+            style={{
+              height: "2.5em",
+              backgroundColor: "rgba(0,0,0,0.5)",
+              color: "white",
+            }}
             onKeyUp={dayHandle}
           />
 
