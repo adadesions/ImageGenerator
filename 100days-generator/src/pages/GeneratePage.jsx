@@ -3,13 +3,22 @@ import GradientBtn from "../components/GradientBtn";
 import { useEffect, useState, useRef } from "react";
 import quotes from "../assets/json/quotes.json";
 
+const randomImage = () => {  
+  const ctx = require.context('../assets/bg')
+  const imgs = ctx.keys()  
+  const len = imgs.length
+  const randIdx = Math.floor(Math.random() * len);
+  
+  return imgs[randIdx].replace('./', '')
+}
+
 const GeneratePage = () => {
   const randomIdx = Math.floor(Math.random() * quotes.quotes.length);
   let quote = quotes.quotes[randomIdx].quote;
   let author = "- " + quotes.quotes[randomIdx].author;
-
-  const randomImg = Math.floor(Math.random() * 9);
-  let bgPath = require(`../assets/img/bg${randomImg}.jpeg`);
+  
+  const randomImg = randomImage();
+  const bg = require(`../assets/bg/${randomImg}`)
 
   const [days, setDays] = useState(3);
 
@@ -37,16 +46,16 @@ const GeneratePage = () => {
 
   return (
     <div className="container mx-auto bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
-      <div className="grid place-items-center h-screen grid-cols-1">
+      <div className="grid place-items-center py-10 grid-cols-1">
         <Canvas100
           quote={quote}
           author={author}
-          img={bgPath}
+          img={bg}
           day={days}
           width={800}
           height={600}
         />
-        <div className="px-8">
+        <div className="px-8 py-4">
           <input
             className="mr-6 text-center"
             type="text"
