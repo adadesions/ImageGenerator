@@ -54,8 +54,7 @@ const Canvas100 = (props) => {
 
   const saveImage = () => {
     const canvas = canvasRef.current;
-    const dataUrl = canvas.toDataURL("image/png", 1.0);
-    console.log(dataUrl);
+    canvas.toDataURL("image/png", 1.0);
   };
 
   return (

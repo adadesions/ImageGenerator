@@ -63,7 +63,7 @@ const GeneratePage = () => {
         />
         <div className="px-8 py-4">
           <input
-            className="mr-6 text-center"
+            className="md:mr-4 text-center w-60 mb-2"
             type="text"
             placeholder="Enter a specific day"
             style={{
