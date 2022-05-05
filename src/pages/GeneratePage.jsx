@@ -25,7 +25,7 @@ const GeneratePage = () => {
   const randomImg = randomImage();
   const bg = require(`../assets/bg/${randomImg}`)
 
-  const curDay = 100 - dayBetween(Date.now(), new Date(2022, 6, 27))
+  const curDay = 100 - dayBetween(Date.now(), new Date(2022, 6, 26))
   const [days, setDays] = useState(curDay);
 
   useEffect(() => {
